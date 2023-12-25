@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http'
 export class CurrencyapidataService {
 
   private apiUrl = 'https://api.privatbank.ua/p24api/exchange_rates?json&date=';
-  private proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+  private proxyUrl = 'http://cors-anywhere.herokuapp.com/'
 
   constructor(private http: HttpClient) { }
 
