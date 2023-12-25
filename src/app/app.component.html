@@ -1,5 +1,5 @@
 <h1 class="accountantapp-name">Курси валют та конвертор</h1>
-<div class="accountantapp" >
+<div class="accountantapp" *ngIf="currjson && currjson.exchangeRate; else loading">
   <header class="header">
     <div class="header-names">
       <h2 class="header-names-value">Валюта</h2>
@@ -86,7 +86,7 @@
     <div class="loader"></div>
     <ng-container *ngIf="showLoadingMessage">
       <p class="loader-message">Sorry, too many requests from one user, please try again in one minuete</p>
-      *ngIf="currjson.length > 0; else loading"
+
     </ng-container>
   </div>
 </ng-template>

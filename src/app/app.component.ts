@@ -64,7 +64,6 @@ export class AppComponent implements OnInit {
 
   private fetchCurrencyData() {
     this.currency.getCurrencyData().subscribe((data) => {
-      console.log(data);
       this.currjson = data;
       for (const currency of Object.keys(this.currencies)) {
         const currencyCode = currency.toUpperCase();
@@ -75,12 +74,11 @@ export class AppComponent implements OnInit {
         }
       }
 
-      console.log('currjson:', this.currjson);
-      console.log(this.currencies);
 
       this.selectedValues.c1 = 1;
       this.selectedValues.c2 = this.currencies['usd'].sells;
       this.updateSecondCombinationValue();
+      this.showLoadingMessage = false;
     });
   }
 
@@ -124,7 +122,7 @@ export class AppComponent implements OnInit {
       [this.currencies['chf'].sells]: this.currencies['chf'].buys,
       1: 1
     };
-    console.log(this.selectedValues.c1, this.selectedValues.c2)
+
     const temp = this.selectedValues.c1;
     this.selectedValues.c1 = mapping2[this.selectedValues.c2];
     this.selectedValues.c2 = mapping[temp];
