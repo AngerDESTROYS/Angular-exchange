@@ -1,3 +1,5 @@
+@import '../mixins/mixin.scss';
+
 @font-face {
   font-family: 'PragmaticaC-Bold';
   src: url('../fonts/pragmaticac-bold.otf') format('woff2'),
@@ -15,6 +17,7 @@
 }
 
 .accountantapp {
+  box-sizing: border-box;
   font-family: 'PragmaticaC-Bold', sans-serif;
   margin-left: 100px;
   width: 550px;
@@ -22,11 +25,22 @@
   flex-direction: column;
   border-radius: 10px;
 
+  @include for-phone {
+    width: 90%;
+    margin: 0;
+    padding-left: 25px;
+  }
+
   &-name {
     font-family: 'PragmaticaC-Bold', sans-serif;
     margin-top: 100px;
     margin-left: 100px;
     font-size: 60px;
+
+    @include for-phone {
+      font-size: 40px;
+      margin: 20px;
+    }
   }
 }
 
@@ -36,10 +50,14 @@
 }
 
 .header {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   width: 450px;
+  @include for-phone {
+    width: 100%;
+  }
 
   &-names {
     display: flex;
@@ -52,7 +70,12 @@
     }
 
     &-buys {
-      margin-right: 0px;
+      margin-left: 100px;
+      margin-right: 50px;
+      @include for-phone {
+        margin-left: 30px;
+        margin-right: 30px;
+      }
     }
 
     &-sells {
@@ -69,10 +92,17 @@
       margin-left: 10px;
       color: gray;
       font-family: 'PragmaticaC', sans-serif;
+      margin-right: auto;
     }
+
 
     &-buys {
       margin-left: 100px;
+      margin-right: 50px;
+      @include for-phone {
+        margin-left: 30px;
+        margin-right: 30px;
+      }
     }
 
     &-sells {
@@ -88,10 +118,17 @@
       margin-left: 10px;
       color: gray;
       font-family: 'PragmaticaC', sans-serif;
+      margin-right: auto;
     }
+
 
     &-buys {
       margin-left: 100px;
+      margin-right: 50px;
+      @include for-phone {
+        margin-left: 30px;
+        margin-right: 30px;
+      }
     }
 
     &-sells {
@@ -104,6 +141,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
 
   &-name {
     font-family: 'PragmaticaC', sans-serif;
@@ -117,6 +155,8 @@
     margin-top: 10px;
     width: 20px;
     height: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
     background-repeat: no-repeat;
     background-image: url('../imgs/doublearrowgray.svg');
     transform: rotate(90deg);
@@ -129,27 +169,40 @@
   &-first {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     &-selection {
       height: 40px;
-      width: 230px;
+      width: 100%;
       margin-bottom: 20px;
       border: #B4BDC3 1px solid;
       padding-left: 24px;
       font-family: 'PragmaticaC', sans-serif;
       font-size: 16px;
       cursor: pointer;
+
+      @include for-phone {
+        width: 100%;
+        padding: 0;
+      }
     }
 
     &-input {
+      box-sizing: border-box;
       height: 40px;
-      width: 202px;
+      width: 100%;
       -moz-appearance: textfield;
       appearance: textfield;
       border: #B4BDC3 1px solid;
       padding-left: 24px;
       font-family: 'PragmaticaC', sans-serif;
       font-size: 16px;
+      margin-top: auto;
+
+      @include for-phone {
+        margin-top: auto;
+        width: 100%;
+      }
     }
 
     &-input::-webkit-inner-spin-button,
@@ -162,18 +215,33 @@
   &-second {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     &-combination {
       display: flex;
       align-items: center;
+      justify-content: center;
+
+      @include for-phone {
+        flex-direction: column;
+      }
 
       &-value {
         display: flex;
         height: 40px;
-        align-items: flex-start;
-        width: 20px;
-        margin-left: 30px;
-        padding-right: 20px;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        margin-left: 20px;
+        padding: auto;
+        cursor: default;
+        margin-bottom: 20px;
+        border: 1px solid #B4BDC3;
+        @include for-phone {
+          margin-left: auto;
+          margin-bottom: 10px;
+          height: 30px;
+        }
       }
     }
 
@@ -186,9 +254,16 @@
       font-family: 'PragmaticaC', sans-serif;
       font-size: 16px;
       cursor: pointer;
+
+      @include for-phone {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 10px;
+      }
     }
 
     &-input {
+      box-sizing: border-box;
       height: 40px;
       width: 100%;
       -moz-appearance: textfield;
@@ -197,6 +272,10 @@
       padding-left: 24px;
       font-family: 'PragmaticaC', sans-serif;
       font-size: 16px;
+
+      @include for-phone {
+        width: 100%;
+      }
     }
 
     &-input::-webkit-inner-spin-button,
@@ -234,6 +313,11 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

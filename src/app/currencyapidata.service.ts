@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrencyapidataService {
 
-  constructor(private http:HttpClient) { }
+  private corsProxyUrl = 'https://thingproxy.freeboard.io/fetch/';
+  private apiUrl = 'https://api.privatbank.ua/p24api/exchange_rates?json&date=';
 
-  getcurrencydata() {
-    let url = 'https://api.monobank.ua/bank/currency';
-    return this.http.get(url);
+  constructor(private http: HttpClient) { }
+
+  getCurrencyData() {
+    const today = new Date();
+    const formattedDate = `${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}`;
+    const fullUrl = this.corsProxyUrl + this.apiUrl + formattedDate;
+
+    return this.http.get(fullUrl);
   }
 }

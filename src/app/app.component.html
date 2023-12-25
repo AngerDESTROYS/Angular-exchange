@@ -1,5 +1,5 @@
 <h1 class="accountantapp-name">Курси валют та конвертор</h1>
-<div class="accountantapp" *ngIf="currjson.length > 0; else loading">
+<div class="accountantapp" >
   <header class="header">
     <div class="header-names">
       <h2 class="header-names-value">Валюта</h2>
@@ -7,49 +7,74 @@
       <h2 class="header-names-sells">Продаж</h2>
     </div>
 
-    <div class="header-usdmoney">
-      <h2 class="header-usdmoney-value">USD</h2>
-      <h2 class="header-usdmoney-uah">UAH</h2>
-      <h2 class="header-usdmoney-buys">{{usdbuys}}</h2>
-      <h2 class="header-usdmoney-sells">{{usdsells}}</h2>
-    </div>
-
-    <div class="line"></div>
 
     <div class="header-eurmoney">
       <h2 class="header-eurmoney-value">EUR</h2>
       <h2 class="header-eurmoney-uah">UAH</h2>
-      <h2 class="header-eurmoney-buys">{{eurbuys}}</h2>
-      <h2 class="header-eurmoney-sells">{{eursells}}</h2>
+      <h2 class="header-eurmoney-buys">{{currencies['eur'].buys}}</h2>
+      <h2 class="header-eurmoney-sells">{{currencies['eur'].sells}}</h2>
     </div>
+
+    <div class="line"></div>
+
+    <div class="header-usdmoney">
+      <h2 class="header-usdmoney-value">USD</h2>
+      <h2 class="header-usdmoney-uah">UAH</h2>
+      <h2 class="header-usdmoney-buys">{{currencies['usd'].buys}}</h2>
+      <h2 class="header-usdmoney-sells">{{currencies['usd'].sells}}</h2>
+    </div>
+
+
+    <div class="line"></div>
+
+    <div class="header-usdmoney">
+      <h2 class="header-usdmoney-value">PLN</h2>
+      <h2 class="header-usdmoney-uah">UAH</h2>
+      <h2 class="header-usdmoney-buys">{{currencies['pln'].buys}}</h2>
+      <h2 class="header-usdmoney-sells">{{currencies['pln'].sells}}</h2>
+    </div>
+
   </header>
 
   <div class="line"></div>
 
-  <h2 class="converter-name">Конвертер валют</h2>
-  <div class="converter">
-    <div class="converter-first">
-      <select [(ngModel)]="selectedValues.c1" name="country1" id="country1" class="converter-first-selection" (change)="convertSecondToFirst()">
-        <option [ngValue]="usdbuys">Доллар США</option>
-        <option [ngValue]="eurbuys">Євро</option>
-        <option [ngValue]="'1'">Українська гривня</option>
-      </select>
-      <input [(ngModel)]="inputValues.c1" (input)="convertFirstToSecond()" type="number" class="converter-first-input" >
-    </div>
+  <div class="converter-container">
+    <h2 class="converter-name">Конвертер валют</h2>
 
-    <button class="converter-division" (click)="switchAndRecountInputs()">
-    </button>
-
-    <div class="converter-second">
-      <div class="converter-second-combination">
-        <select [(ngModel)]="selectedValues.c2" name="country2" id="country2" class="converter-second-selection" (change)="convertFirstToSecond()">
-          <option [ngValue]="usdsells">Доллар США</option>
-          <option [ngValue]="eursells">Євро</option>
-          <option [ngValue]="'1'">Українська гривня</option>
+    <div class="converter">
+      <div class="converter-first">
+        <select [(ngModel)]="selectedValues.c1" name="country1" id="country1" class="converter-first-selection"
+          (change)="convertFirstToSecond(); updateSecondCombinationValue()">
+          <option [ngValue]="1">Українська гривня</option>
+          <option [ngValue]="currencies['pln'].buys">Польський злотий</option>
+          <option [ngValue]="currencies['eur'].buys">Євро</option>
+          <option [ngValue]="currencies['usd'].buys">Доллар США</option>
+          <option [ngValue]="currencies['gbp'].buys">Англійський фунт стерлінгів</option>
+          <option [ngValue]="currencies['czk'].buys">Чеська крона</option>
+          <option [ngValue]="currencies['chf'].buys">Швейцарський франк</option>
         </select>
-        <div class="converter-second-combination-value">{{selectedValues.c2}}</div>
+        <input [(ngModel)]="inputValues.c1" (input)="convertFirstToSecond()" type="number" class="converter-first-input">
       </div>
-      <input [(ngModel)]="inputValues.c2" (input)="convertSecondToFirst()" type="number" class="converter-second-input" >
+
+      <button class="converter-division" (click)="switchAndRecountInputs()">
+      </button>
+
+      <div class="converter-second">
+        <div class="converter-second-combination">
+          <select [(ngModel)]="selectedValues.c2" name="country2" id="country2" class="converter-second-selection"
+            (change)="convertFirstToSecond(); updateSecondCombinationValue()">
+            <option [ngValue]="1">Українська гривня</option>
+            <option [ngValue]="currencies['pln'].sells">Польський злотий</option>
+            <option [ngValue]="currencies['eur'].sells">Євро</option>
+            <option [ngValue]="currencies['usd'].sells">Доллар США</option>
+            <option [ngValue]="currencies['gbp'].sells">Англійський фунт стерлінгів</option>
+            <option [ngValue]="currencies['czk'].sells">Чеська крона</option>
+            <option [ngValue]="currencies['chf'].sells">Швейцарський франк</option>
+          </select>
+          <div class="converter-second-combination-value">{{secondCombinationValue}}</div>
+        </div>
+        <input [(ngModel)]="inputValues.c2" (input)="convertSecondToFirst()" type="number" class="converter-second-input">
+      </div>
     </div>
   </div>
 </div>
@@ -61,6 +86,7 @@
     <div class="loader"></div>
     <ng-container *ngIf="showLoadingMessage">
       <p class="loader-message">Sorry, too many requests from one user, please try again in one minuete</p>
+      *ngIf="currjson.length > 0; else loading"
     </ng-container>
   </div>
 </ng-template>
