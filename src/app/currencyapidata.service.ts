@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CurrencyapidataService {
 
-  private corsProxyUrl = 'https://thingproxy.freeboard.io/fetch/';
   private apiUrl = 'https://api.privatbank.ua/p24api/exchange_rates?json&date=';
 
   constructor(private http: HttpClient) { }
@@ -14,7 +13,7 @@ export class CurrencyapidataService {
   getCurrencyData() {
     const today = new Date();
     const formattedDate = `${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}`;
-    const fullUrl = this.corsProxyUrl + this.apiUrl + formattedDate;
+    const fullUrl = this.apiUrl + formattedDate;
 
     return this.http.get(fullUrl);
   }
