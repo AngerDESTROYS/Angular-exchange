@@ -1,7 +1,8 @@
 # [DEMO](https://angerdestroys.github.io/angular-exchange/)
 # AngularExchange
 This Angular application fetches and displays today's exchange rates from the PrivatBank API archive. It also includes a currency converter to convert between different 7 currencies.
-Also, I added a button to swap currency names from selects and to take a number from the second input to the first and recount the second input to see what u will get from selling that currency.
+Also, I added a button to swap currency names from selects and to take a number from the second input to the first and recount the second input to see what you will get from selling that currency.
+Also, I added an adaptation for small resolution so you can check it on your phone!)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
 
 ## Features
