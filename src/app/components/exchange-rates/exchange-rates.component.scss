@@ -1,0 +1,111 @@
+@import '../../../assets/mixins/mixin.scss';
+
+@font-face {
+  font-family: 'PragmaticaC-Bold';
+  src: url('../../../assets/fonts/pragmaticac-bold.otf') format('woff2'),
+    url('../../../assets/fonts//pragmaticac.otf') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PragmaticaC';
+  src: url('../../../assets/fonts/pragmaticac.otf') format('woff2'),
+    url('../../../assets/fonts/pragmaticac.otf') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+.rates {
+  font-family: 'PragmaticaC-Bold', sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 450px;
+  @include for-phone {
+    width: 100%;
+  }
+
+  &-names {
+    display: flex;
+    flex-direction: row;
+    font-family: 'PragmaticaC', sans-serif;
+    color: grey;
+
+    &-value {
+      margin-right: auto;
+    }
+
+    &-buys {
+      margin-left: 100px;
+      margin-right: 50px;
+      @include for-phone {
+        margin-left: 30px;
+        margin-right: 30px;
+      }
+    }
+
+    &-sells {
+      margin-left: auto;
+    }
+  }
+
+  &-usdmoney {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &-uah {
+      margin-left: 10px;
+      color: gray;
+      font-family: 'PragmaticaC', sans-serif;
+      margin-right: auto;
+    }
+
+
+    &-buys {
+      margin-left: 100px;
+      margin-right: 50px;
+      @include for-phone {
+        margin-left: 30px;
+        margin-right: 30px;
+      }
+    }
+
+    &-sells {
+      margin-left: auto;
+    }
+  }
+
+  &-eurmoney {
+    display: flex;
+    flex-direction: row;
+
+    &-uah {
+      margin-left: 10px;
+      color: gray;
+      font-family: 'PragmaticaC', sans-serif;
+      margin-right: auto;
+    }
+
+
+    &-buys {
+      margin-left: 100px;
+      margin-right: 50px;
+      @include for-phone {
+        margin-left: 30px;
+        margin-right: 30px;
+      }
+    }
+
+    &-sells {
+      margin-left: auto;
+    }
+  }
+}
+
+.line {
+  border: 1px solid #E2E6E9;
+  width: 100%;
+}

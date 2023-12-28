@@ -1,0 +1,39 @@
+<div class="converter-container">
+  <h2 class="converter-name">Конвертер валют</h2>
+
+  <div class="converter">
+    <div class="converter-first">
+      <select [(ngModel)]="selectedValues.c1" name="country1" id="country1" class="converter-first-selection"
+        (change)="convertCurrency('c1', 'c2'); updateSecondCombinationValue()">
+        <option [ngValue]="1">Українська гривня</option>
+        <option [ngValue]="currencies['pln'].buys">Польський злотий</option>
+        <option [ngValue]="currencies['eur'].buys">Євро</option>
+        <option [ngValue]="currencies['usd'].buys">Доллар США</option>
+        <option [ngValue]="currencies['gbp'].buys">Англійський фунт стерлінгів</option>
+        <option [ngValue]="currencies['czk'].buys">Чеська крона</option>
+        <option [ngValue]="currencies['chf'].buys">Швейцарський франк</option>
+      </select>
+      <input [(ngModel)]="inputValues.c1" (input)="convertCurrency('c1', 'c2')" type="number" class="converter-first-input">
+    </div>
+
+    <button class="converter-division" (click)="switchAndRecountInputs()">
+    </button>
+
+    <div class="converter-second">
+      <div class="converter-second-combination">
+        <select [(ngModel)]="selectedValues.c2" name="country2" id="country2" class="converter-second-selection"
+          (change)="convertCurrency('c1', 'c2'); updateSecondCombinationValue()">
+          <option [ngValue]="1">Українська гривня</option>
+          <option [ngValue]="currencies['pln'].sells">Польський злотий</option>
+          <option [ngValue]="currencies['eur'].sells">Євро</option>
+          <option [ngValue]="currencies['usd'].sells">Доллар США</option>
+          <option [ngValue]="currencies['gbp'].sells">Англійський фунт стерлінгів</option>
+          <option [ngValue]="currencies['czk'].sells">Чеська крона</option>
+          <option [ngValue]="currencies['chf'].sells">Швейцарський франк</option>
+        </select>
+        <div class="converter-second-combination-value">{{secondCombinationValue}}</div>
+      </div>
+      <input [(ngModel)]="inputValues.c2" (input)="convertCurrency('c2', 'c1')" type="number" class="converter-second-input">
+    </div>
+  </div>
+</div>
